@@ -1,0 +1,50 @@
+<div class="page-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title> Ordenes </mat-card-title>
+            <button mat-raised-button color="primary" (click)="create()">
+                <mat-icon>add</mat-icon>
+                Agregar orden
+            </button>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="table-container">
+                <table mat-table [dataSource]="orders">
+                    <ng-container matColumnDef="Cliente">
+                        <th mat-header-cell *matHeaderCellDef> Cliente</th>
+                        <td mat-cell *matCellDef="let o"> {{ o.customerName }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Estado">
+                        <th mat-header-cell *matHeaderCellDef> Estado </th>
+                        <td mat-cell *matCellDef="let o"> {{ o.status }} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Fecha pedido">
+                        <th mat-header-cell *matHeaderCellDef> Fecha pedido </th>
+                        <td mat-cell *matCellDef="let o"> {{ o.deliveryDate | date:'yyyy-MM-dd' }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Total">
+                        <th mat-header-cell *matHeaderCellDef> Total </th>
+                        <td mat-cell *matCellDef="let o"> {{ o.total | currency }} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Acciones">
+                        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                        <td mat-cell *matCellDef="let o">
+                            <div class="actions">
+                                <button mat-stroked-button color="primary" (click)="goToWeights(o.id)">Pesos</button>
+                                <button mat-flat-button color="accent" (click)="confirm(o.id)"> Confirmar </button>
+                            </div>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

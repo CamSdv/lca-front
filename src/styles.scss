@@ -1,1 +1,109 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@include mat.core();
+
+/* =========================================
+   Paletas personalizadas
+========================================= */
+
+$primary-palette: mat.define-palette(mat.$blue-palette, 700);
+$accent-palette: mat.define-palette(mat.$cyan-palette, 500);
+$warn-palette: mat.define-palette(mat.$red-palette);
+
+$app-theme: mat.define-light-theme((color: (primary: $primary-palette,
+                accent: $accent-palette,
+                warn: $warn-palette,
+            ),
+            typography: mat.define-typography-config(),
+            density: 0));
+
+@include mat.all-component-themes($app-theme);
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: #f4f6f9;
+}
+
+.page-container {
+    padding: 24px;
+}
+
+.mat-mdc-card {
+    border-radius: 16px !important;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        0 8px 24px rgba(0, 0, 0, 0.05) !important;
+
+    background: #ffffff !important;
+    border: 1px solid #ececec;
+}
+
+.mat-mdc-card-header {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px !important;
+}
+
+table.mat-mdc-table {
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.mat-mdc-header-row {
+    background: #f8fafc;
+}
+
+.mat-mdc-header-cell {
+    color: #1e293b !important;
+    font-weight: 700 !important;
+    font-size: 14px;
+    border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.mat-mdc-cell {
+    color: #334155;
+    border-bottom: 1px solid #f1f5f9 !important;
+}
+
+.mat-mdc-row:hover {
+    background: #f8fafc;
+    transition: 0.2s;
+}
+
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button {
+    border-radius: 10px !important;
+    font-weight: 600;
+}
+
+
+.mat-mdc-form-field {
+    width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+mat-card-actions {
+    justify-content: flex-end
+}
+
+button {
+    margin-inline: 10px;
+}

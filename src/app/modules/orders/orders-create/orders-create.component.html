@@ -1,0 +1,44 @@
+<form [formGroup]="dataForm">
+
+    <mat-form-field>
+        <input matInput placeholder="Nombre cliente" formControlName="customerName">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Teléfono" formControlName="customerPhone">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Vendedor" formControlName="sellerId">
+            <mat-option *ngFor="let s of sellers" [value]="s.id">
+                {{ s.name }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="date" formControlName="deliveryDate">
+    </mat-form-field>
+
+    <h3>Productos</h3>
+
+    <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+
+        <span>{{ item.value.productName }}</span>
+
+        <!-- FIXED -->
+        <input *ngIf="item.value.pricingType === 'FIXED'" type="number" formControlName="quantity"
+            placeholder="Cantidad">
+
+        <!-- WEIGHT -->
+        <span *ngIf="item.value.pricingType === 'WEIGHT'">
+            Peso se asignará automáticamente (500g base)
+        </span>
+
+    </div>
+
+    <button mat-raised-button color="primary" (click)="submit()">
+        Crear Pedido
+    </button>
+
+</form>

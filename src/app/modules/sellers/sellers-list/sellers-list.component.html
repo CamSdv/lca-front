@@ -1,0 +1,46 @@
+<div class="page-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Vendedores</mat-card-title>
+            <button mat-raised-button color="primary" (click)="create()">
+                <mat-icon>add</mat-icon>
+                Agregar vendedor
+            </button>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="table-container">
+                <table mat-table [dataSource]="sellers">
+
+                    <ng-container matColumnDef="Vendedor">
+                        <th mat-header-cell *matHeaderCellDef> Vendedor </th>
+                        <td mat-cell *matCellDef="let o"> {{o.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Estado">
+                        <th mat-header-cell *matHeaderCellDef> Estado </th>
+                        <td mat-cell *matCellDef="let o">
+                            <mat-button-toggle-group appearance="legacy" [(ngModel)]="o.status" aria-label="Estado" (change)="updateStatus(o)">
+                                <mat-button-toggle [value]="true">Activo</mat-button-toggle>
+                                <mat-button-toggle [value]="false">Inactivo</mat-button-toggle>
+                            </mat-button-toggle-group>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Acciones">
+                        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                        <td mat-cell *matCellDef="let o">
+                            <button mat-icon-button color="secundary" matTooltip="Editar" (click)="update(o.id)">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                </table>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
